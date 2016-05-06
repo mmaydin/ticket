@@ -45,7 +45,7 @@ class UserServiceImpl implements IUserService {
 	 * @see \Ticket\Service\IUserService::getByUsername()
 	 */
         public function getByUsername($username) {
-            return $this->userRepository->findBy(array("username" => $username));
+            return $this->userRepository->findOneBy(array("username" => $username));
         }
 
 	/**

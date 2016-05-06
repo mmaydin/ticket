@@ -64,9 +64,9 @@ class User implements UserInterface {
      protected $lastLogin;
 
     /**
-     * @ManyToMany(targetEntity="Role")
+     * @Column(type="string")
      */
-    protected $roles = null;
+    protected $roles;
 
     /**
      * @OneToMany(targetEntity="Ticket", mappedBy="user")
@@ -75,7 +75,6 @@ class User implements UserInterface {
     protected $tickets = null;
 
     function __construct() {
-        $this->roles = new ArrayCollection();
         $this->tickets = new ArrayCollection();
     }
 
@@ -126,7 +125,7 @@ class User implements UserInterface {
     }
 
     function getRoles() {
-        return $this->roles;
+        return array($this->roles);
     }
 
     function getSalt() {

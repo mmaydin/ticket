@@ -4,6 +4,7 @@ namespace Ticket\Service\Impl;
 use Ticket\Service\ITicketService;
 use Doctrine\ORM\EntityManager;
 use Ticket\Entity\Ticket;
+use Ticket\Entity\User;
 use Ticket\Exception\EntityNotFoundException;
 
 class TicketServiceImpl implements ITicketService {
