@@ -1,0 +1,6 @@
+/cache/*
+/composer.lock
+/composer.phar
+/config/settings.php
+/logs/*
+/vendor/*
