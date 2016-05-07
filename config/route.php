@@ -24,9 +24,13 @@ $ticket->get('/add_ticket', 'Ticket\Controller\TicketController::addTicket')
 $ticket->post('/save_ticket', 'Ticket\Controller\TicketController::saveTicket')
 ->bind('save_ticket');
 
-// Ticket page
-$ticket->get('/ticket/{ticket_id}', 'Ticket\Controller\TicketController::show')
-->bind('ticket');
+// Reopen ticket
+$ticket->get('/reopen_ticket/{ticket_id}', 'Ticket\Controller\TicketController::reopenTicket')
+->bind('reopen_ticket');
+
+// Close ticket
+$ticket->get('/close_ticket/{ticket_id}', 'Ticket\Controller\TicketController::closeTicket')
+->bind('close_ticket');
 
 // Add comment to get page
 $ticket->get('/add_comment/{ticket_id}', 'Ticket\Controller\TicketController::addComment')

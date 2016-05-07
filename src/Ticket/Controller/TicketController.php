@@ -50,6 +50,32 @@ class TicketController {
         return $app->redirect('/');
     }
 
+
+    public function reopenTicket(Request $request, Application $app) {
+        $params = $request->attributes->all();
+        if (isset($params['ticket_id']) && !empty($params['ticket_id'])) {
+            $ticket = $app['service.tickets']->getTicketById($params['ticket_id']);
+            $ticket->setStatus(Ticket::STATUS_NEW);
+            
+            $app['service.tickets']->saveTicket($ticket);
+
+            return $app->redirect('/add_comment/' . $params['ticket_id']);
+        } else {
+            return $app->redirect('/');
+        }
+    }
+
+    public function closeTicket(Request $request, Application $app) {
+        $params = $request->attributes->all();
+        if (isset($params['ticket_id']) && !empty($params['ticket_id'])) {
+            $ticket = $app['service.tickets']->getTicketById($params['ticket_id']);
+            $ticket->setStatus(Ticket::STATUS_CLOSED);
+            
+            $app['service.tickets']->saveTicket($ticket);
+        }
+        return $app->redirect('/');
+    }
+
     public function addComment(Request $request, Application $app) {
 
         $params = $request->attributes->all();

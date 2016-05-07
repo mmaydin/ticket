@@ -10,6 +10,7 @@
             <tr>
                 <th>Soruların</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,13 @@
             <tr>
                 <td>{{ ticket.title }}</td>
                 <td><a href="{{ app.url_generator.generate('add_comment', {'ticket_id': ticket.getId()  } ) }}">cevap yaz</a></td>
+                <td>
+                    {% if ticket.getStatus() != 'closed' %} 
+                        <a href="{{ app.url_generator.generate('close_ticket', {'ticket_id': ticket.getId()  } ) }}">kapat</a>
+                    {% else %}
+                        <a href="{{ app.url_generator.generate('reopen_ticket', {'ticket_id': ticket.getId()  } ) }}">tekrar aç</a>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody> 
