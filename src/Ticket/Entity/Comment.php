@@ -32,6 +32,12 @@ class Comment {
     /** @Column(name="content", type="text") */
     protected $content;
 
+
+    function __construct() {
+        $this->createdAt = new \DateTime();
+    }
+
+
     public function getId() {
         return $this->id;
     }

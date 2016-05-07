@@ -1,0 +1,17 @@
+<p>Soru: {{ ticket.title }}</p>
+<p>Kategoriler: {{ categories }}</p>
+{% for comment in ticket.comments %}
+    <p>
+        Cevap: {{ comment.date }} {{ comment.content }}
+    </p>
+{% endfor %}
+
+<form action="{{ app.url_generator.generate('save_comment', {'ticket_id': ticket.getId()  } ) }}" method="post">
+    <p><label for="content">Cevap gir: </label><textarea id="content" name="content"></textarea></p>
+    <p><input type="submit" value="Ekle"></p>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</form>
+
+<a href="/">ana sayfa</a>

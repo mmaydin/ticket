@@ -43,12 +43,32 @@ class TicketServiceImpl implements ITicketService {
 
 	/**
 	 * {@inheritDoc}
-	 * @see \Ticket\Service\ITicketService::createTicket()
+	 * @see \Ticket\Service\ITicketService::saveTicket()
 	 */
-	public function createTicket(Ticket $ticket) {
-            $this->entityManager->persist($ticket);
-            $this->entityManager->flush();
+	public function saveTicket(Ticket $ticket) {
+            if (empty($ticket->getId())) {
+                $this->entityManager->persist($ticket);
+                $this->entityManager->flush();
+            } else {
+                $this->entityManager->flush($ticket);
+            }
             
             return $ticket;
 	}
+
+        /**
+	 * {@inheritDoc}
+	 * @see \Ticket\Service\ITicketService::countAll()
+	 */
+	public function countAll() {
+            return $this->ticketRepository->count();
+	}
+
+        /**
+	 * {@inheritDoc}
+	 * @see \Ticket\Service\ITicketService::countByStatus()
+	 */
+        public function countByStatus($status) {
+            return $this->ticketRepository->count()->where(array("user" => $user));
+        }
 }

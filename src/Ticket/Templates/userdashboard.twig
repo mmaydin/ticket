@@ -1,0 +1,24 @@
+{% extends "index.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <a href="{{ app.url_generator.generate('add_ticket') }}">Soru Sor</a>
+    <a href="{{ app.url_generator.generate('logout') }}">Çıkış Yap</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Soruların</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.title }}</td>
+                <td><a href="{{ app.url_generator.generate('add_comment', {'ticket_id': ticket.getId()  } ) }}">cevap yaz</a></td>
+            </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+{% endblock %}

@@ -6,7 +6,6 @@ use Ticket\Entity\User;
 use Ticket\Entity\Comment;
 use Ticket\Entity\Category;
 
-
 /**
  * @Entity
  * @Table(name="tickets")
@@ -42,11 +41,11 @@ class Ticket {
     /** @Column(name="content", type="text") */
     protected $content;
     
-    /** @Column(name="gender", type="string") */
+    /** @Column(name="status", type="string") */
     protected $status;
 
     /**
-     * @OneToMany(targetEntity="Comment", mappedBy="ticket")
+     * @OneToMany(targetEntity="Comment", mappedBy="ticket", cascade={"persist"})
      */
     protected $comments = array();
 
@@ -56,6 +55,8 @@ class Ticket {
     protected $categories = array();
 
     function __construct() {
+        $this->createdAt = new \DateTime();
+        $this->status = self::STATUS_NEW;
         $this->comments = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
@@ -88,6 +89,16 @@ class Ticket {
 
     public function setCratedAt($createdAt) {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getContent() {
+        return $this->content;
+    }
+
+    public function setContent($content) {
+        $this->content = $content;
 
         return $this;
     }

@@ -10,6 +10,8 @@ interface ITicketService {
     public function getAllTickets();
     public function getTicketById($id);
     public function getTicketsByUser(User $user);
-    public function createTicket(Ticket $ticket);
+    public function saveTicket(Ticket $ticket);
+    public function countAll();
+    public function countByStatus($status);
 
 }

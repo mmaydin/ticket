@@ -10,14 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 
-//echo ROOT_DIR . '/vendor/autoload.php';
-
 $classloader = require ROOT_DIR . '/vendor/autoload.php';
-
-/*
-echo is_callable(array($classloader, 'loadClass')) ? 'E' : 'H';
-exit;
-*/
 
 $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . "/settings.php"));
 
@@ -44,9 +37,6 @@ $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
 ));
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($classloader, 'loadClass'));
 
-//$a = new Ticket\Manager\UserManager($app['service.users'], $app["security.encoder_factory"]);
-//$b =  new Ticket\Service\Impl\TicketServiceImpl($app['orm.em']);
-
 // Register Form provider
 $app->register(new FormServiceProvider());
 
@@ -65,9 +55,11 @@ $app['service.tickets'] = $app->share(function() use ($app){
     return new Ticket\Service\Impl\TicketServiceImpl($app['orm.em']);
 });
 
+/*
 $app['service.comments'] = $app->share(function() use ($app){
     return new Ticket\Service\Impl\CommentServiceImpl($app['orm.em']);
 });
+*/
 
 $app['service.categories'] = $app->share(function() use ($app){
     return new Ticket\Service\Impl\CategoryServiceImpl($app['orm.em']);

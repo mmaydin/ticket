@@ -1,0 +1,9 @@
+<form action="{{ app.url_generator.generate( 'save_category' ) }}" method="post">
+    <p><label for="title">Kategori: </label><input type="text" id="title" name="title" /></p>
+    <p><input type="submit" value="Ekle"></p>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</form>
+
+<a href="/">ana sayfa</a>

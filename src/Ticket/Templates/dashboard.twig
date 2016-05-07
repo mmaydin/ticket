@@ -1,0 +1,26 @@
+{% extends "index.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <a href="{{ app.url_generator.generate('add_category' ) }}">Kategori Ekle</a>
+    <a href="{{ app.url_generator.generate('logout') }}">Çıkış Yap</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Yeni Sorular</th>
+                <th>Cevaplanan Sorular</th>
+                <th>Kapanan Sorular</th>
+                <th>Tüm sorular</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ newCount }}</td>
+                <td>{{ waitingCount }}</td>
+                <td>{{ closedCount }}</td>
+                <td>{{ totalCount }}</td>
+            </tr>
+        </tbody> 
+    </table>
+{% endblock %}
