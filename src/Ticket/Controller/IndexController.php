@@ -2,6 +2,7 @@
 
 namespace Ticket\Controller;
 
+use Ticket\Entity\Ticket;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 

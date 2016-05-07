@@ -61,7 +61,7 @@ class TicketServiceImpl implements ITicketService {
 	 * @see \Ticket\Service\ITicketService::countAll()
 	 */
 	public function countAll() {
-            return $this->ticketRepository->count();
+            return count($this->ticketRepository->findAll());
 	}
 
         /**
@@ -69,6 +69,6 @@ class TicketServiceImpl implements ITicketService {
 	 * @see \Ticket\Service\ITicketService::countByStatus()
 	 */
         public function countByStatus($status) {
-            return $this->ticketRepository->count()->where(array("user" => $user));
+            return count($this->ticketRepository->findBy(array("status" => $status)));
         }
 }
